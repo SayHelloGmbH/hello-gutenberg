@@ -1,0 +1,25 @@
+{
+  "name": "sayhellogmbh-my-block",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "blocks/src/blocks.js",
+  "scripts": {
+    "start": "npm run build",
+    "build": "webpack -d --watch",
+    "build:test": "webpack -d",
+    "build:prod": "webpack -p"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^2.1.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
