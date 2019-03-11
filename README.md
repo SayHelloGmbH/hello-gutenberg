@@ -2,6 +2,8 @@
 
 This plugin is provided as an example of registering a custom Block for the WordPress Block Editor, code named “Gutenberg”.
 
+*THIS PLUGIN AND README IS NOT YET CORRECT OR COMPLETE.*
+
 ## Development
 
 To make edits to the plugin, first add the NMP dependencies using ``npm install``. Then…
