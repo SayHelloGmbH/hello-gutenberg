@@ -3,11 +3,11 @@ var debug = process.env.NODE_ENV !== 'production';
 var webpack = require('webpack');
 
 var extractEditorSCSS = new ExtractText({
-  filename: './blocks.editor.build.css'
+  filename: './blocks.editor.css'
 });
 
 var extractBlockSCSS = new ExtractText({
-  filename: './blocks.style.build.css'
+  filename: './blocks.style.css'
 });
 
 var plugins = [extractEditorSCSS, extractBlockSCSS];
@@ -33,7 +33,7 @@ module.exports = {
   entry: './blocks/src/blocks.js',
   output: {
     path: __dirname + '/blocks/dist/',
-    filename: 'blocks.build.js'
+    filename: 'blocks.js'
   },
   module: {
     rules: [

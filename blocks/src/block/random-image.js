@@ -17,8 +17,8 @@ import './editor.scss';
     }
 
     blocks.registerBlockType('myplugin/random-image', {
-        title: __('Random Image', 'hello-gutenberg-roots'),
-        description: __('Adds a random image (400px x 200px) from Lorem Pixel to the page.', 'hello-gutenberg-roots'),
+        title: 'Random Image',
+        description: 'Adds a random image (400px x 200px) from Lorem Pixel to the page.',
 
         icon: 'format-image',
 
@@ -50,10 +50,10 @@ import './editor.scss';
 
             children.push(
                 el('select', { value: category, onChange: setCategory },
-                    el('option', null, __('Select a category', 'hello-gutenberg-roots'),),
-                    el('option', { value: 'animals' }, __('Animals', 'hello-gutenberg-roots')),
-                    el('option', { value: 'nature' }, __('Nature', 'hello-gutenberg-roots')),
-                    el('option', { value: 'sports' }, __('Sports', 'hello-gutenberg-roots'))
+                    el('option', null, 'Select a category',),
+                    el('option', { value: 'animals' }, 'Animals'),
+                    el('option', { value: 'nature' }, 'Nature'),
+                    el('option', { value: 'sports' }, 'Sports')
                 )
             );
 

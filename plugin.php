@@ -24,7 +24,7 @@ add_action('init', function () {
 add_action('enqueue_block_editor_assets', function () {
 	wp_enqueue_script(
 		'sayhellogmbh/hello-gutenberg-roots',
-		plugins_url('dist/blocks/index.js', __FILE__),
+		plugins_url('blocks/dist/blocks.js', __FILE__),
 		['wp-blocks', 'wp-element']
 	);
 });
