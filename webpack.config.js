@@ -1,62 +1,54 @@
-var ExtractText = require('extract-text-webpack-plugin');
-var debug = process.env.NODE_ENV !== 'production';
-var webpack = require('webpack');
+const devMode = process.env.NODE_ENV !== 'production'
 
-var extractEditorSCSS = new ExtractText({
-  filename: './blocks.editor.css'
+const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
+const extractSass = new MiniCssExtractPlugin({
+  filename: '[name].min.css',
 });
-
-var extractBlockSCSS = new ExtractText({
-  filename: './blocks.style.css'
-});
-
-var plugins = [extractEditorSCSS, extractBlockSCSS];
-
-var scssConfig = {
-  use: [
-    {
-      loader: 'css-loader'
-    },
-    {
-      loader: 'sass-loader',
-      options: {
-        outputStyle: 'compressed'
-      }
-    }
-  ]
-};
 
 module.exports = {
-  context: __dirname,
-  devtool: debug ? 'inline-sourcemap' : null,
-  mode: debug ? 'development' : 'production',
-  entry: './blocks/src/blocks.js',
+  entry: {
+    block: path.resolve(__dirname, 'blocks/src/block'),
+  },
+  plugins: [
+    new UglifyJSPlugin({
+      uglifyOptions: {
+        warnings: false,
+        parse: {},
+        compress: {},
+        // mangle: true,
+        output: null,
+        toplevel: false,
+        nameCache: null,
+        ie8: false,
+        keep_fnames: false,
+      },
+    }),
+    extractSass
+  ],
   output: {
-    path: __dirname + '/blocks/dist/',
-    filename: 'blocks.js'
+    filename: '[name].min.js',
+    path: path.resolve(__dirname, 'blocks/dist')
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.scss$/,
         use: [
-          {
-            loader: 'babel-loader'
-          }
-        ]
-      },
-      {
-        test: /editor\.scss$/,
-        exclude: /node_modules/,
-        use: extractEditorSCSS.extract(scssConfig)
-      },
-      {
-        test: /style\.scss$/,
-        exclude: /node_modules/,
-        use: extractBlockSCSS.extract(scssConfig)
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       }
     ]
-  },
-  plugins: plugins
+  }
 };

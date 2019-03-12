@@ -1,7 +1,6 @@
 // random-image.js
 
-import './style.scss';
-import './editor.scss';
+import './block.scss';
 
 (function(blocks, element) {
     var el = element.createElement,
