@@ -10,6 +10,12 @@
     "build:test": "webpack -d",
     "build:prod": "webpack -p"
   },
+  "browserslist": [
+    "last 3 versions",
+    "> 3%",
+    "maintained node versions",
+    "not dead"
+  ],
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",

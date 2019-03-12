@@ -1,3 +1,13 @@
 body {
 	background-color: gray;
+	line-height: 1.5;
+	font: 'comic sans';
+	background-clip: text;
+}
+
+.grid {
+	display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 20px;
 }
