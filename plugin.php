@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Say Hello Gutenberg Block Plugin
+ * Plugin Name: Say Hello - Gutenberg Block Collection
  * Plugin URI: #
- * Description: Example plugin for the registration of one or more Blocks for the Gutenberg editor.
+ * Description: This plugin registers one or more Blocks for the WordPress Gutenberg Editor.
  * Author: Say Hello GmbH
  * Author URI: https://sayhello.ch/
  * Version: 1.0.0
@@ -16,9 +16,15 @@ if (! defined('ABSPATH')) {
 }
 
 add_action('init', function () {
-	register_block_type('sayhellogmbh/random-image', [
-		'render_callback' => 'sayhellogmbh-hello-gutenberg-roots',
-	]);
+
+	if (! function_exists('register_block_type')) {
+		// Gutenberg is not active.
+		return;
+	}
+
+	load_plugin_textdomain('hello-gutenberg-roots', false, basename(dirname(__FILE__)) . '/languages');
+
+	register_block_type('sayhellogmbh/random-image');
 });
 
 add_action('enqueue_block_editor_assets', function () {
@@ -30,7 +36,7 @@ add_action('enqueue_block_editor_assets', function () {
 
 	if (file_exists(plugin_dir_path(__FILE__) . 'blocks/dist/blocks.min.css')) {
 		wp_enqueue_style(
-			'sayhellogmbh/hello-gutenberg-roots',
+			'hello-gutenberg-roots',
 			plugins_url('blocks/dist/blocks.min.css', __FILE__),
 			['wp-edit-blocks'],
 			filemtime(plugin_dir_path(__FILE__) . 'blocks/dist/blocks.min.css')
@@ -41,7 +47,7 @@ add_action('enqueue_block_editor_assets', function () {
 add_action('wp_enqueue_scripts', function () {
 
 	wp_enqueue_style(
-		'sayhellogmbh/hello-gutenberg-roots',
+		'hello-gutenberg-roots',
 		plugins_url('blocks/dist/blocks.min.css', __FILE__),
 		[],
 		null

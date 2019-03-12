@@ -1,0 +1,63 @@
+# Copyright (C) 2019 Say Hello GmbH
+# This file is distributed under the same license as the Say Hello - Gutenberg Block Collection plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Say Hello - Gutenberg Block Collection 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/hello-gutenberg-"
+"roots\n"
+"Last-Translator: admin <admin@local.test>\n"
+"Language-Team: Deutsch\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-03-12 16:47+0000\n"
+"PO-Revision-Date: 2019-03-12 16:49+0000\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Domain: hello-gutenberg-roots\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Loco-Version: 2.2.1; wp-5.1"
+
+#. Plugin Name of the plugin
+msgid "Say Hello - Gutenberg Block Collection"
+msgstr "Say Hello - Gutenberg Blöcke"
+
+#. Plugin URI of the plugin
+msgid "#"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"This plugin registers one or more Blocks for the WordPress Gutenberg Editor."
+msgstr ""
+"Dieses Plugin registriert einen oder mehrere Blöcke für den WordPress-"
+"Gutenberg-Editor."
+
+#. Author of the plugin
+msgid "Say Hello GmbH"
+msgstr "Say Hello GmbH"
+
+#. Author URI of the plugin
+msgid "https://sayhello.ch/"
+msgstr "https://sayhello.ch/"
+
+#: blocks/src/random-image/block.js:21
+msgid "Random Image"
+msgstr "Zufallsbild"
+
+#: blocks/src/random-image/block.js:22
+msgid "Adds a random image (400px x 200px) from Lorem Pixel to the page."
+msgstr ""
+"Fügt ein Zufallsbild (400px x 200px) von lorempixel.com in die Seite hinzu."
+
+#: blocks/src/random-image/block.js:54
+msgid "Animals"
+msgstr "Tiere"
+
+#: blocks/src/random-image/block.js:55
+msgid "Nature"
+msgstr "Natur"
+
+#: blocks/src/random-image/block.js:56
+msgid "Sports"
+msgstr "Sportarten"
