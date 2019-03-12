@@ -24,7 +24,14 @@ add_action('init', function () {
 add_action('enqueue_block_editor_assets', function () {
 	wp_enqueue_script(
 		'sayhellogmbh/hello-gutenberg-roots',
-		plugins_url('blocks/dist/blocks.js', __FILE__),
+		plugins_url('blocks/dist/block.min.js', __FILE__),
 		['wp-blocks', 'wp-element']
+	);
+
+	wp_enqueue_style(
+		'sayhellogmbh/hello-gutenberg-roots',
+		plugins_url('blocks/dist/block.min.css', __FILE__),
+		['wp-edit-blocks'],
+		filemtime(plugin_dir_path(__FILE__) . 'blocks/dist/block.min.css')
 	);
 });
