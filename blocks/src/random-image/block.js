@@ -1,27 +1,26 @@
-// random-image.js
-
 import './block.scss';
 
 (function(blocks, element) {
     var el = element.createElement,
         source = blocks.source;
 
-    function RandomImage(props) {
+    function renderHTML(props) {
         var src = 'https://lorempixel.com/400/200/' + props.category;
 
         return el('img', {
             src: src,
-            alt: props.category
+            alt: props.category,
+            className: 'shb-random-image'
         });
     }
 
-    blocks.registerBlockType('myplugin/random-image', {
+    blocks.registerBlockType('sayhellogmbh/random-image', {
         title: 'Random Image',
         description: 'Adds a random image (400px x 200px) from Lorem Pixel to the page.',
 
         icon: 'format-image',
 
-        category: 'common',
+        category: 'layout',
 
         attributes: {
             category: {
@@ -44,7 +43,7 @@ import './block.scss';
 
             children = [];
             if (category) {
-                children.push(RandomImage({ category: category }));
+                children.push(renderHTML({ category: category }));
             }
 
             children.push(
@@ -60,7 +59,7 @@ import './block.scss';
         },
 
         save: function(props) {
-            return RandomImage({ category: props.attributes.category });
+            return renderHTML({ category: props.attributes.category });
         }
     });
 })(

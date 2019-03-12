@@ -16,7 +16,7 @@ if (! defined('ABSPATH')) {
 }
 
 add_action('init', function () {
-	register_block_type('sayhellogmbh/hello-gutenberg-roots', [
+	register_block_type('sayhellogmbh/random-image', [
 		'render_callback' => 'sayhellogmbh-hello-gutenberg-roots',
 	]);
 });
@@ -24,14 +24,26 @@ add_action('init', function () {
 add_action('enqueue_block_editor_assets', function () {
 	wp_enqueue_script(
 		'sayhellogmbh/hello-gutenberg-roots',
-		plugins_url('blocks/dist/block.min.js', __FILE__),
+		plugins_url('blocks/dist/blocks.min.js', __FILE__),
 		['wp-blocks', 'wp-element']
 	);
 
+	if (file_exists(plugin_dir_path(__FILE__) . 'blocks/dist/blocks.min.css')) {
+		wp_enqueue_style(
+			'sayhellogmbh/hello-gutenberg-roots',
+			plugins_url('blocks/dist/blocks.min.css', __FILE__),
+			['wp-edit-blocks'],
+			filemtime(plugin_dir_path(__FILE__) . 'blocks/dist/blocks.min.css')
+		);
+	}
+});
+
+add_action('wp_enqueue_scripts', function () {
+
 	wp_enqueue_style(
 		'sayhellogmbh/hello-gutenberg-roots',
-		plugins_url('blocks/dist/block.min.css', __FILE__),
-		['wp-edit-blocks'],
-		filemtime(plugin_dir_path(__FILE__) . 'blocks/dist/block.min.css')
+		plugins_url('blocks/dist/blocks.min.css', __FILE__),
+		[],
+		null
 	);
 });

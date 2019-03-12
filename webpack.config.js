@@ -12,7 +12,7 @@ const uglifyJS = new UglifyJSPlugin();
 
 module.exports = {
   entry: {
-    block: path.resolve(__dirname, 'blocks/src/block'),
+    blocks: path.resolve(__dirname, 'blocks/src/blocks'),
   },
   plugins: [
     uglifyJS,
