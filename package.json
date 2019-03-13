@@ -5,7 +5,7 @@
   "main": "blocks/src/blocks.js",
   "scripts": {
     "start": "npm run build",
-    "build": "webpack -d",
+    "build": "webpack -p",
     "watch": "webpack -d --watch",
     "build:test": "webpack -d",
     "build:prod": "webpack -p"
