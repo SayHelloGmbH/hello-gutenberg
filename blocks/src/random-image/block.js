@@ -1,8 +1,9 @@
 import './block.scss';
 
-(function(blocks, element) {
+(function(blocks, i18n, element) {
     var el = element.createElement,
-        source = blocks.source;
+        source = blocks.source,
+        __ = i18n.__;
 
     function renderHTML(props) {
         var src = 'https://lorempixel.com/400/200/' + props.category;
@@ -10,13 +11,13 @@ import './block.scss';
         return el('img', {
             src: src,
             alt: props.category,
-            className: 'shb-random-image'
+            className: 'wp-blocks-shp wp-blocks-shp-random-image'
         });
     }
 
     blocks.registerBlockType('sayhellogmbh/random-image', {
-        title: 'Random Image',
-        description: 'Adds a random image (400px x 200px) from Lorem Pixel to the page.',
+        title: __('Random Image', 'hello-gutenberg-roots'),
+        description: __('Adds a random image (400px x 200px) from Lorem Pixel to the page.', 'hello-gutenberg-roots'),
 
         icon: 'format-image',
 
@@ -48,10 +49,10 @@ import './block.scss';
 
             children.push(
                 el('select', { value: category, onChange: setCategory },
-                    el('option', null, 'Select a category',),
-                    el('option', { value: 'animals' }, 'Animals'),
-                    el('option', { value: 'nature' }, 'Nature'),
-                    el('option', { value: 'sports' }, 'Sports')
+                    el('option', null, __('Select a category', 'hello-gutenberg-roots')),
+                    el('option', { value: 'animals' }, __('Animals', 'hello-gutenberg-roots')),
+                    el('option', { value: 'nature' }, __('Nature', 'hello-gutenberg-roots')),
+                    el('option', { value: 'sports' }, __('Sports', 'hello-gutenberg-roots'))
                 )
             );
 
@@ -64,5 +65,6 @@ import './block.scss';
     });
 })(
     window.wp.blocks,
+    window.wp.i18n,
     window.wp.element
 );
