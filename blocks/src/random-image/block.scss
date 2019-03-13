@@ -1,3 +1,5 @@
 .wp-blocks-shp-random-image {
-	border: 10px solid red;
+	&.is-style-bordered {
+		border: 10px solid red;
+	}
 }
