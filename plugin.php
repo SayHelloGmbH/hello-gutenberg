@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Say Hello - Gutenberg Block Collection
- * Plugin URI: #
+ * Plugin URI: https://github.com/SayHelloGmbH/hello-gutenberg
  * Description: This plugin registers one or more Blocks for the WordPress Gutenberg Editor.
  * Author: Say Hello GmbH
  * Author URI: https://sayhello.ch/
