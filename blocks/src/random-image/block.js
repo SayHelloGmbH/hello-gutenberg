@@ -15,7 +15,7 @@ import './block.scss';
     var renderHTML = function(props) {
         var src = 'https://lorempixel.com/400/200/' + props.category;
 
-        return createElement('div', { key: 'c-random-image', className: 'c-random-image' },
+        return createElement('div', { key: 'c-random-image', className: props.className + ' c-random-image' },
             createElement('figure', { key: 'c-random-image__figure', className: 'c-random-image__figure' },
                 createElement('img', { key: 'c-random-image__image', src: src, alt: props.category, className: 'c-random-image__image' })
             )
@@ -67,7 +67,7 @@ import './block.scss';
             var childNodes = [];
 
             if (props.attributes.category) {
-                childNodes.push(renderHTML({ category: props.attributes.category }));
+                childNodes.push(renderHTML({ category: props.attributes.category, className: props.className }));
             }
 
             childNodes.push(createElement('select', { key: 'c-random-image__category', value: props.attributes.category, onChange: setCategory },
@@ -88,7 +88,7 @@ import './block.scss';
          * @return {DOM object}   HTML DOM object containing the rendered Block
          */
         save: function(props) {
-            return renderHTML({ category: props.attributes.category });
+            return renderHTML({ category: props.attributes.category, className: props.className });
         }
     });
 })(
