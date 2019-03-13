@@ -29,15 +29,13 @@ module.exports = {
   },
   module: {
     rules: [{
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader'
-        }
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules)/,
+        loader: 'babel-loader'
       },
       {
         test: /\.scss$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',

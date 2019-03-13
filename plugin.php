@@ -27,6 +27,7 @@ add_action('init', function () {
 	load_plugin_textdomain('hello-gutenberg-roots', false, basename(dirname(__FILE__)) . '/languages');
 
 	register_block_type('sayhellogmbh/random-image');
+	register_block_type('sayhellogmbh/teaser');
 });
 
 add_action('enqueue_block_editor_assets', function () {
