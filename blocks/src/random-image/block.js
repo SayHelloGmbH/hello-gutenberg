@@ -2,31 +2,29 @@ import './block.scss';
 
 (function(blocks, i18n, element) {
 
-    // Following extracts the corresponding function from the corresponding object, for local use
+    /**
+     * Following extracts the corresponding function from the corresponding object, for local use
+     */
     const { createElement } = element, { registerBlockType } = blocks, { __ } = i18n;
 
+    /**
+     * Renders the HTML for the frontend and the backend
+     * @param  {array} props The Block properties
+     * @return {object}      HTML DOM object
+     */
     var renderHTML = function(props) {
-        //var size = ? '400/400' : '400/200';
         var src = 'https://lorempixel.com/400/200/' + props.category;
 
-        return createElement(
-            'div',
-            { key: 'c-random-image', className: 'c-random-image' },
-            createElement(
-                'figure',
-                { key: 'c-random-image__figure', className: 'c-random-image__figure' },
-                createElement(
-                    'img', {
-                        key: 'c-random-image__image',
-                        src: src,
-                        alt: props.category,
-                        className: 'c-random-image__image'
-                    }
-                )
+        return createElement('div', { key: 'c-random-image', className: 'c-random-image' },
+            createElement('figure', { key: 'c-random-image__figure', className: 'c-random-image__figure' },
+                createElement('img', { key: 'c-random-image__image', src: src, alt: props.category, className: 'c-random-image__image' })
             )
         );
     }
 
+    /**
+     * Register the Block with all its settings and properties
+     */
     registerBlockType('sayhellogmbh/random-image', {
         title: __('Random Image', 'hello-gutenberg-roots'),
         description: __('Adds a random image (400px x 200px) from Lorem Pixel to the page.', 'hello-gutenberg-roots'),
@@ -41,13 +39,14 @@ import './block.scss';
                 label: __('With a border', 'hello-gutenberg-roots')
             },
         ],
-
         icon: 'format-image',
-
         category: 'layout',
-
         html: false,
 
+        /**
+         * The fields which the editor uses to control the content of the Block
+         * @type {Object}
+         */
         attributes: {
             category: {
                 type: 'string',
@@ -84,9 +83,9 @@ import './block.scss';
         },
 
         /**
-         * Provide the main save function with the block's properties, including the 'attributes' (fields)
-         * @param  {object} props The properties of the current block, including the values of the 'attributes' (fields)
-         * @return {DOM object}   A JavaScript DOM object containing the rendered block
+         * Provide the main save function with the Block's properties, including the 'attributes' (fields)
+         * @param  {object} props The properties of the current Block, including the values of the 'attributes' (fields)
+         * @return {DOM object}   HTML DOM object containing the rendered Block
          */
         save: function(props) {
             return renderHTML({ category: props.attributes.category });

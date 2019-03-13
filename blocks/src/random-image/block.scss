@@ -1,9 +1,17 @@
-.random-image {
+.c-random-image {
 	&__figure {
 		margin: 0;
 	}
+
 	&__wrapper {
 		padding: 1rem;
 		text-align: center;
+	}
+
+	&.is-style-bordered {
+
+		.c-random-image__image {
+			border: 2px solid red;
+		}
 	}
 }
