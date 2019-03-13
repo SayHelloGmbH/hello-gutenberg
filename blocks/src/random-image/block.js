@@ -18,6 +18,7 @@ import './block.scss';
     blocks.registerBlockType('sayhellogmbh/random-image', {
         title: __('Random Image', 'hello-gutenberg-roots'),
         description: __('Adds a random image (400px x 200px) from Lorem Pixel to the page.', 'hello-gutenberg-roots'),
+        keywords: [__('image', 'hello-gutenberg-roots'), __('photo', 'hello-gutenberg-roots'), __('say hello', 'hello-gutenberg-roots')],
 
         icon: 'format-image',
 
