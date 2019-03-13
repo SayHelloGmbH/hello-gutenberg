@@ -9,12 +9,22 @@ import './block.scss';
         //var size = ? '400/400' : '400/200';
         var src = 'https://lorempixel.com/400/200/' + props.category;
 
-        return createElement('img', {
-            key: 'random-image-image',
-            src: src,
-            alt: props.category,
-            className: 'wp-blocks-shp wp-blocks-shp-random-image'
-        });
+        return createElement(
+            'div',
+            { key: 'c-random-image', className: 'c-random-image' },
+            createElement(
+                'figure',
+                { key: 'c-random-image__figure', className: 'c-random-image__figure' },
+                createElement(
+                    'img', {
+                        key: 'c-random-image__image',
+                        src: src,
+                        alt: props.category,
+                        className: 'c-random-image__image'
+                    }
+                )
+            )
+        );
     }
 
     registerBlockType('sayhellogmbh/random-image', {
@@ -36,8 +46,6 @@ import './block.scss';
 
         category: 'layout',
 
-        align: ['left', 'right', 'full'],
-
         html: false,
 
         attributes: {
@@ -50,8 +58,6 @@ import './block.scss';
         },
 
         edit: function(props) {
-            var category = props.attributes.category,
-                children;
 
             var setCategory = function(event) {
                 var selected = event.target.querySelector('option:checked');
@@ -59,24 +65,22 @@ import './block.scss';
                 event.preventDefault();
             }
 
-            children = [];
+            var childNodes = [];
 
-            if (category) {
-                children.push(renderHTML({ category: category }));
+            if (props.attributes.category) {
+                childNodes.push(renderHTML({ category: props.attributes.category }));
             }
 
-            children.push(
-                createElement('select', { key: 'random-image-category', value: category, onChange: setCategory },
-                    createElement('option', null, __('Select a category', 'hello-gutenberg-roots')),
-                    createElement('option', { key: 'random-image-category-animals', value: 'animals' }, __('Animal', 'hello-gutenberg-roots')),
-                    createElement('option', { key: 'random-image-category-cats', value: 'cats' }, __('Cat', 'hello-gutenberg-roots')),
-                    createElement('option', { key: 'random-image-category-nature', value: 'nature' }, __('Nature', 'hello-gutenberg-roots')),
-                    createElement('option', { key: 'random-image-category-people', value: 'people' }, __('Person', 'hello-gutenberg-roots')),
-                    createElement('option', { key: 'random-image-category-sports', value: 'sports' }, __('Sport', 'hello-gutenberg-roots'))
-                )
-            );
+            childNodes.push(createElement('select', { key: 'c-random-image__category', value: props.attributes.category, onChange: setCategory },
+                createElement('option', null, __('Select a category', 'hello-gutenberg-roots')),
+                createElement('option', { key: 'c-random-image__category--animals', value: 'animals' }, __('Animal', 'hello-gutenberg-roots')),
+                createElement('option', { key: 'c-random-image__category--cats', value: 'cats' }, __('Cat', 'hello-gutenberg-roots')),
+                createElement('option', { key: 'c-random-image__category--nature', value: 'nature' }, __('Nature', 'hello-gutenberg-roots')),
+                createElement('option', { key: 'c-random-image__category--people', value: 'people' }, __('Person', 'hello-gutenberg-roots')),
+                createElement('option', { key: 'c-random-image__category--sports', value: 'sports' }, __('Sport', 'hello-gutenberg-roots'))
+            ));
 
-            return createElement('form', { key: 'random-image-form', onSubmit: setCategory }, children);
+            return createElement('form', { key: 'c-random-image__form', onSubmit: setCategory }, childNodes);
         },
 
         /**
