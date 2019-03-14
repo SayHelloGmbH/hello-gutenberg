@@ -1,0 +1,13 @@
+@mixin breakpoint($bp) {
+	@media print, screen and (min-width: #{map-get($breakpoints, $bp)}) {
+		@content;
+	}
+}
+
+$breakpoints: (
+	tablet: 768px,
+	tablet_landscape: 1024px,
+	latop: 1280px,
+	laptop_large: 1440px,
+	desktop: 1600px
+) !default;
