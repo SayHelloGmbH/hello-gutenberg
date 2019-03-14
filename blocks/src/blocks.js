@@ -1,2 +1,2 @@
-import './random-image/block.js';
+import '@sayhellogmbh/gutenberg-random-image';
 import './teaser/block.js';
