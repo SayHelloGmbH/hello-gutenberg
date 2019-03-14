@@ -27,7 +27,25 @@ add_action('init', function () {
 	load_plugin_textdomain('hello-gutenberg-roots', false, basename(dirname(__FILE__)) . '/languages');
 
 	register_block_type('sayhellogmbh/random-image');
-	register_block_type('sayhellogmbh/teaser');
+	// register_block_type('sayhellogmbh/teaser');
+	register_block_type('sayhellogmbh/serverside', [
+		'render_callback' => function ($attributes, $content) {
+			$recent_posts = wp_get_recent_posts(array(
+			'numberposts' => 1,
+			'post_status' => 'publish',
+			));
+			if (count($recent_posts) === 0) {
+				return 'No posts';
+			}
+			$post = $recent_posts[ 0 ];
+			$post_id = $post['ID'];
+			return sprintf(
+				'<a class="wp-block-my-plugin-latest-post" href="%1$s">%2$s - from server</a>',
+				esc_url(get_permalink($post_id)),
+				esc_html(get_the_title($post_id))
+			);
+		}
+	]);
 });
 
 add_action('enqueue_block_editor_assets', function () {

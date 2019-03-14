@@ -1,2 +1,3 @@
 import '@sayhellogmbh/gutenberg-random-image';
-import './teaser/block.js';
+import './serverside/block.js';
+// import './teaser/block.js';

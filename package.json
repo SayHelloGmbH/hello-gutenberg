@@ -21,6 +21,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@sayhellogmbh/gutenberg-random-image": "0.0.1",
+    "@wordpress/components": "^7.1.0",
     "autoprefixer": "^9.4.10",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-react-jsx": "^6.24.1",
