@@ -11,10 +11,7 @@
     "build:prod": "webpack -p"
   },
   "browserslist": [
-    "last 3 versions",
-    "> 3%",
-    "maintained node versions",
-    "not dead"
+    "extends @wordpress/browserslist-config"
   ],
   "devDependencies": {
     "@babel/core": "^7.3.4",
