@@ -28,7 +28,7 @@ add_action(
 
 		load_plugin_textdomain('hello-gutenberg-roots', false, basename(dirname(__FILE__)) . '/languages');
 
-		register_block_type('sayhellogmbh/random-image');
+		// register_block_type('sayhellogmbh/random-image');
 		register_block_type('sayhellogmbh/teaser');
 	}
 );
@@ -65,3 +65,19 @@ add_action(
 		);
 	}
 );
+
+add_filter('block_categories', function ($categories, $post) {
+	if ($post->post_type !== 'post'  && $post->post_type !== 'page') {
+		return $categories;
+	}
+	return array_merge(
+		$categories,
+		[
+			[
+				'slug' => 'hello-gutenberg-roots',
+				'title' => __('Gutenberg Blocks by Say Hello', 'hello-gutenberg-roots'),
+				//'icon'  => 'wordpress',
+			]
+		]
+	);
+}, 10, 2);

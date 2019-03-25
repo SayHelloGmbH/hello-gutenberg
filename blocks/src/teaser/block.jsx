@@ -10,7 +10,7 @@ const { RichText } = wp.editor;
 
 import classnames from "classnames";
 
-const attributes = {
+const blockAttributes = {
   message: {
     type: "array",
     source: "children",
@@ -31,7 +31,7 @@ class SHTeaserBlock extends Component {
           {__("Say Hello Teaser", "hello-gutenberg-roots")}
         </h2>
         <RichText
-          tagName="div"
+          tagName="p"
           className="c-teaser__text"
           value={message}
           placeholder={__("Add a short teaser text", "hello-gutenberg-roots")}
@@ -63,13 +63,13 @@ export default registerBlockType("sayhellogmbh/teaser", {
       label: __("With a border", "hello-gutenberg-roots")
     }
   ],
-  icon: "format-text",
-  category: "common",
+  icon: "format-quote",
+  category: "hello-gutenberg-roots",
   supports: {
     html: false
   },
 
-  attributes,
+  attributes: blockAttributes,
 
   edit: SHTeaserBlock,
 
@@ -85,19 +85,24 @@ export default registerBlockType("sayhellogmbh/teaser", {
         </h3>
         <RichText.Content
           className="c-teaser__text"
-          tagName="div"
+          tagName="p"
           value={message}
         />
       </div>
     );
   },
 
+  /**
+   * This gives an example of a previous generated HTML
+   * supports, attributes and save should all be defined.
+   * https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-deprecation/
+   */
   deprecated: [
     {
       supports: {
         html: false
       },
-      attributes,
+      attributes: blockAttributes,
       save(props) {
         const {
           attributes: { message },
@@ -110,7 +115,7 @@ export default registerBlockType("sayhellogmbh/teaser", {
             </h2>
             <RichText.Content
               className="c-teaser__text"
-              tagName="div"
+              tagName="p"
               value={message}
             />
           </div>
