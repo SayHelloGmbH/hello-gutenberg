@@ -42,3 +42,6 @@
 .c-post-content > * {
   max-width: 75.625rem !important; }
 
+.plugin-sidebar-content {
+  padding: 16px; }
+
