@@ -24,8 +24,17 @@ const blockAttributes = {
   },
   ctaText: {
     type: "array",
-    selector: ".c-calltoaction__subtitle",
+    selector: ".c-calltoaction__text",
     source: "children"
+  },
+  ctaImgID: {
+    type: "number"
+  },
+  ctaImgURL: {
+    type: "string",
+    source: "attribute",
+    attribute: "src",
+    selector: "img"
   }
 };
 
@@ -34,7 +43,8 @@ class SHCtaBlock extends Component {
     const onSelectImage = img => {
       setAttributes({
         ctaImgID: img.id,
-        ctaImgURL: img.url
+        ctaImgURL:
+          img.sizes.large && img.sizes.large.url ? img.sizes.large.url : img.url
       });
     };
 
@@ -44,25 +54,17 @@ class SHCtaBlock extends Component {
       setAttributes
     } = this.props;
 
+    window.console.log(ctaImgURL);
+
     return [
-      <section
-        className={classnames(
-          className,
-          "c-calltoaction",
-          "c-calltoaction--withimage"
-        )}
-      >
+      <section className={classnames(className, "c-calltoaction")}>
         <div className="c-calltoaction__figure">
           <MediaUpload
+            key="mediaupload"
             buttonProps={{
               className: "change-image"
             }}
-            onSelect={img =>
-              setAttributes({
-                ctaImgID: img.id,
-                ctaImgURL: img.url
-              })
-            }
+            onSelect={onSelectImage}
             allowed={ALLOWED_MEDIA_TYPES}
             type="image"
             value={ctaImgID}
@@ -99,7 +101,7 @@ class SHCtaBlock extends Component {
             keepPlaceholderOnFocus
           />
           <RichText
-            tagName="p"
+            tagName="div"
             className="c-calltoaction__text"
             value={ctaText}
             placeholder={__("Add some text", "hello-gutenberg-roots")}
@@ -153,11 +155,7 @@ export default registerBlockType("sayhellogmbh/call-to-action", {
       className
     } = props;
     return (
-      <section
-        className={classnames(className, "c-calltoaction", {
-          "c-calltoaction--withimage": ctaImgURL
-        })}
-      >
+      <section className={classnames(className, "c-calltoaction")}>
         <div className="c-calltoaction__content">
           <RichText.Content
             className="c-calltoaction__title"
@@ -171,15 +169,13 @@ export default registerBlockType("sayhellogmbh/call-to-action", {
           />
           <RichText.Content
             className="c-calltoaction__text"
-            tagName="p"
+            tagName="div"
             value={ctaText}
           />
         </div>
-        {ctaImgURL && (
-          <div className="c-calltoaction__figure">
-            <img className="calltoaction__image" src={ctaImgURL} alt="avatar" />
-          </div>
-        )}
+        <div className="c-calltoaction__figure">
+          <img className="c-calltoaction__image" src={ctaImgURL} alt="avatar" />
+        </div>
       </section>
     );
   }
