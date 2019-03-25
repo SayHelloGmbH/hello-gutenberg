@@ -1,2 +1,7 @@
 //import "@sayhellogmbh/gutenberg-random-image";
-import "./teaser/block.jsx";
+import "./call-to-action/block.jsx";
+
+import "./plugin-sidebar/inspector.jsx";
+import "./prefill/block.jsx";
+
+// import "./teaser/block.jsx";

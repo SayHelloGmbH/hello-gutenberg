@@ -30,6 +30,8 @@ add_action(
 
 		// register_block_type('sayhellogmbh/random-image');
 		register_block_type('sayhellogmbh/teaser');
+		register_block_type('sayhellogmbh/call-to-action');
+		register_block_type('sayhellogmbh/prefill-example');
 	}
 );
 
@@ -81,3 +83,16 @@ add_filter('block_categories', function ($categories, $post) {
 		]
 	);
 }, 10, 2);
+
+add_action('init', function () {
+	register_meta('post', 'sidebar_plugin_meta_block_field', array(
+		'show_in_rest' => true,
+		'single' => true,
+		'type' => 'string',
+	));
+	register_meta('page', 'sidebar_plugin_meta_block_field', array(
+		'show_in_rest' => true,
+		'single' => true,
+		'type' => 'string',
+	));
+});
