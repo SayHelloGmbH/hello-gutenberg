@@ -2,30 +2,36 @@
 
 .c-calltoaction {
 	margin: 0;
-	padding: 1rem;
 	background: #f0f0f0;
 	color: inherit;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
 
-	+.c-calltoaction {
+	&.is-style-dark +.c-calltoaction.is-style-dark {
 		border-top: 1px solid #fff;
 	}
 
-	&--withimage {
-		display: flex;
-		flex-flow: row wrap;
-		align-items: center;
-
-		.c-calltoaction__content {
-			flex: 0 1 50%;
-			padding: 2rem;
-			order: 2;
-		}
+	&__content {
+		box-sizing: border-box;
+		flex: 0 1 50%;
+		padding: 1em 3em;
+		order: 2;
 	}
 
 	&__figure {
+		box-sizing: border-box;
 		flex: 0 1 50%;
-		padding: 2rem;
 		order: 1;
+
+		.components-button {
+			display: block;
+			padding: 0;
+		}
+	}
+
+	&__image {
+		display: block;
 	}
 
 	&__subtitle {
