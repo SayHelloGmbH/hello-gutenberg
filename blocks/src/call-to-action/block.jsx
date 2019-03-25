@@ -3,9 +3,13 @@ import "./block.scss";
 const { Component } = wp.element,
   { registerBlockType } = wp.blocks,
   { __ } = wp.i18n;
-const { RichText } = wp.editor;
+const { RichText, MediaUpload } = wp.editor;
+const { Button, SelectControl } = wp.components;
 
 import classnames from "classnames";
+import icons from "./components/icons";
+
+const ALLOWED_MEDIA_TYPES = ["image"];
 
 const blockAttributes = {
   ctaTitle: {
@@ -27,35 +31,82 @@ const blockAttributes = {
 
 class SHCtaBlock extends Component {
   render() {
+    const onSelectImage = img => {
+      setAttributes({
+        ctaImgID: img.id,
+        ctaImgURL: img.url
+      });
+    };
+
     const {
-      attributes: { ctaTitle, ctaSubtitle, ctaText },
+      attributes: { ctaTitle, ctaSubtitle, ctaText, ctaImgURL, ctaImgID },
       className,
       setAttributes
     } = this.props;
 
     return [
-      <section className={classnames(className, "c-calltoaction")}>
-        <RichText
-          tagName="h1"
-          className="c-calltoaction__title"
-          value={ctaTitle}
-          placeholder={__("Add a title", "hello-gutenberg-roots")}
-          onChange={value => setAttributes({ ctaTitle: value })}
-        />
-        <RichText
-          tagName="h2"
-          className="c-calltoaction__subtitle"
-          value={ctaSubtitle}
-          placeholder={__("Add a subtitle", "hello-gutenberg-roots")}
-          onChange={value => setAttributes({ ctaSubtitle: value })}
-        />
-        <RichText
-          tagName="p"
-          className="c-calltoaction__text"
-          value={ctaText}
-          placeholder={__("Add some text", "hello-gutenberg-roots")}
-          onChange={value => setAttributes({ ctaText: value })}
-        />
+      <section
+        className={classnames(
+          className,
+          "c-calltoaction",
+          "c-calltoaction--withimage"
+        )}
+      >
+        <div className="c-calltoaction__figure">
+          <MediaUpload
+            buttonProps={{
+              className: "change-image"
+            }}
+            onSelect={img =>
+              setAttributes({
+                ctaImgID: img.id,
+                ctaImgURL: img.url
+              })
+            }
+            allowed={ALLOWED_MEDIA_TYPES}
+            type="image"
+            value={ctaImgID}
+            render={({ open }) => (
+              <Button onClick={open}>
+                {!ctaImgID ? (
+                  icons.upload
+                ) : (
+                  <img
+                    className="c-calltoaction__image"
+                    src={ctaImgURL}
+                    alt="avatar"
+                  />
+                )}
+              </Button>
+            )}
+          />
+        </div>
+        <div className="c-calltoaction__content">
+          <RichText
+            tagName="h1"
+            className="c-calltoaction__title"
+            value={ctaTitle}
+            placeholder={__("Add a title", "hello-gutenberg-roots")}
+            onChange={value => setAttributes({ ctaTitle: value })}
+            keepPlaceholderOnFocus
+          />
+          <RichText
+            tagName="h2"
+            className="c-calltoaction__subtitle"
+            value={ctaSubtitle}
+            placeholder={__("Add a subtitle", "hello-gutenberg-roots")}
+            onChange={value => setAttributes({ ctaSubtitle: value })}
+            keepPlaceholderOnFocus
+          />
+          <RichText
+            tagName="p"
+            className="c-calltoaction__text"
+            value={ctaText}
+            placeholder={__("Add some text", "hello-gutenberg-roots")}
+            onChange={value => setAttributes({ ctaText: value })}
+            keepPlaceholderOnFocus
+          />
+        </div>
       </section>
     ];
   }
@@ -98,26 +149,37 @@ export default registerBlockType("sayhellogmbh/call-to-action", {
 
   save(props) {
     const {
-      attributes: { ctaTitle, ctaSubtitle, ctaText },
+      attributes: { ctaTitle, ctaSubtitle, ctaText, ctaImgURL },
       className
     } = props;
     return (
-      <section className={classnames(className, "c-calltoaction")}>
-        <RichText.Content
-          className="c-calltoaction__title"
-          tagName="h1"
-          value={ctaTitle}
-        />
-        <RichText.Content
-          className="c-calltoaction__subtitle"
-          tagName="h2"
-          value={ctaSubtitle}
-        />
-        <RichText.Content
-          className="c-calltoaction__text"
-          tagName="p"
-          value={ctaText}
-        />
+      <section
+        className={classnames(className, "c-calltoaction", {
+          "c-calltoaction--withimage": ctaImgURL
+        })}
+      >
+        <div className="c-calltoaction__content">
+          <RichText.Content
+            className="c-calltoaction__title"
+            tagName="h1"
+            value={ctaTitle}
+          />
+          <RichText.Content
+            className="c-calltoaction__subtitle"
+            tagName="h2"
+            value={ctaSubtitle}
+          />
+          <RichText.Content
+            className="c-calltoaction__text"
+            tagName="p"
+            value={ctaText}
+          />
+        </div>
+        {ctaImgURL && (
+          <div className="c-calltoaction__figure">
+            <img className="calltoaction__image" src={ctaImgURL} alt="avatar" />
+          </div>
+        )}
       </section>
     );
   }
