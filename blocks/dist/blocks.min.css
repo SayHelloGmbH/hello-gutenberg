@@ -1,3 +1,9 @@
-.c-teaser.is-style-bordered {
-  border: 2px solid red; }
+.c-teaser {
+  padding: 1rem;
+  background: #f0f0f0;
+  border: 1px solid #eee; }
+  .c-teaser__text {
+    font-style: italic; }
+  .c-teaser.is-style-bordered {
+    border: 2px solid red; }
 

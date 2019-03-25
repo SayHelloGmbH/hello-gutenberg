@@ -1,6 +1,14 @@
 @import '../settings';
 
 .c-teaser {
+	padding: 1rem;
+	background: #f0f0f0;
+	border: 1px solid #eee;
+
+	&__text {
+		font-style: italic;
+	}
+
 	&.is-style-bordered {
 		border: 2px solid red;
 	}
