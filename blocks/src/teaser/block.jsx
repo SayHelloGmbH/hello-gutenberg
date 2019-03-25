@@ -80,9 +80,9 @@ export default registerBlockType("sayhellogmbh/teaser", {
     } = props;
     return (
       <div className={classnames(className, "c-teaser")}>
-        <h2 class="c-shteaser__title">
+        <h3 class="c-shteaser__title">
           {__("Say Hello Teaser", "hello-gutenberg-roots")}
-        </h2>
+        </h3>
         <RichText.Content
           className="c-teaser__text"
           tagName="div"
@@ -90,24 +90,32 @@ export default registerBlockType("sayhellogmbh/teaser", {
         />
       </div>
     );
-  } //,
+  },
 
-  // deprecated: [
-  //   {
-  //     save(props) {
-  //       const {
-  //         attributes: { message },
-  //         className
-  //       } = props;
-  //       return (
-  //         <div className={classnames(className, "c-teaser")}>
-  //           <h2 class="c-shteaser__title">
-  //             {__("Say Hello Teaser", "hello-gutenberg-roots")}
-  //           </h2>
-  //           <div class="c-shteaser__text">{message}</div>
-  //         </div>
-  //       );
-  //     }
-  //   }
-  // ]
+  deprecated: [
+    {
+      supports: {
+        html: false
+      },
+      attributes,
+      save(props) {
+        const {
+          attributes: { message },
+          className
+        } = props;
+        return (
+          <div className={classnames(className, "c-teaser")}>
+            <h2 class="c-shteaser__title">
+              {__("Say Hello Teaser", "hello-gutenberg-roots")}
+            </h2>
+            <RichText.Content
+              className="c-teaser__text"
+              tagName="div"
+              value={message}
+            />
+          </div>
+        );
+      }
+    }
+  ]
 });
