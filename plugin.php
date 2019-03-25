@@ -30,6 +30,7 @@ add_action(
 
 		// register_block_type('sayhellogmbh/random-image');
 		register_block_type('sayhellogmbh/teaser');
+		register_block_type('sayhellogmbh/call-to-action');
 	}
 );
 
