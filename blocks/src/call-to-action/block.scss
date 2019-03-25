@@ -1,0 +1,33 @@
+@import '../settings';
+
+.c-calltoaction {
+	margin: 1rem 0;
+	padding: 1rem;
+	background: #f0f0f0;
+	color: inherit;
+
+	&__subtitle {
+		font-weight: 400;
+		font-size: 1.25rem;
+		line-height: 1.2;
+		color: inherit;
+		margin: 1em 0;
+	}
+
+	&__text {
+		color: inherit;
+	}
+
+	&__title {
+		color: inherit;
+		font-weight: 400;
+		font-size: 1.75rem;
+		line-height: 1.33333333;
+		margin: 0 0 1em;
+	}
+
+	&.is-style-dark {
+		background-color: #66C3D1;
+		color: #fff;
+	}
+}
